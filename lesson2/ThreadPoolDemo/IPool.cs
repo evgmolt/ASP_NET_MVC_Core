@@ -7,10 +7,9 @@ using System.Threading.Tasks;
 
 namespace ThreadPoolDemo
 {
-    interface IMyPool<T>
+    interface IPool
     {
-        public T Take();
-        public void Release(T item);
-        protected abstract T ObjectConstructor();
+        public void QueueTask(Action task);
+        public void Dispose();
     }
 }

@@ -5,14 +5,21 @@ using System.Threading;
 
 namespace ThreadPoolDemo
 {
-    public sealed class Pool : IDisposable
+    public sealed class Pool : IDisposable, IPool
     {
         private readonly ConcurrentQueue<Thread> _workers; // queue of worker threads ready to process actions
         private readonly ConcurrentQueue<Action> _tasks = new ConcurrentQueue<Action>(); // actions to be processed by worker threads
         private bool _disallowAdd; // set to true when disposing queue but there are still tasks pending
         private bool _disposed; // set to true when disposing queue and no more tasks are pending
+        private readonly int MaxNumOfThreads = 50;
+
         public Pool(int size)
         {
+            if (size > MaxNumOfThreads)
+            {
+                string message = $"The number of threads cannot be more than { MaxNumOfThreads }";
+                throw new ArgumentException(message);
+            }
             this._workers = new ConcurrentQueue<Thread>();
             for (var i = 0; i < size; ++i)
             {
@@ -107,6 +114,5 @@ namespace ThreadPoolDemo
                 task = null;
             }
         }
-
     }
 }

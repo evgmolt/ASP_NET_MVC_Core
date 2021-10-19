@@ -7,9 +7,29 @@ namespace ThreadPoolDemo
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Start");
+            Console.WriteLine("For start first pool press Enter");
             Console.ReadLine();
-            using (var pool = new Pool(10))
+            WorkerPool<int> workerPool = new WorkerPool<int>(new CancellationTokenSource(), 5);
+
+            workerPool.startWorkers(value =>
+            {
+                Console.WriteLine(value);
+            });
+            //enqueue all the work
+            for (int i = 0; i < 100; i++)
+            {
+                workerPool.enqueue(i);
+            }
+            //Signal no more work
+            workerPool.CompleteAdding();
+
+            //wait all pending work to finish
+            workerPool.await();
+
+            Console.WriteLine("For start second pool press Enter");
+            Console.ReadLine();
+
+            using (var pool = new Pool(5))
             {
                 Console.WriteLine("Num of threads : " + pool.GetNumOfThreads());
                 var random = new Random();
@@ -26,11 +46,6 @@ namespace ThreadPoolDemo
                     pool.QueueTask(() => randomizer(i1));
                 }
             }
-        }
-
-        private static void Do(object state)
-        {
-            Console.WriteLine(Thread.CurrentThread.ManagedThreadId);
         }
     }
 }
