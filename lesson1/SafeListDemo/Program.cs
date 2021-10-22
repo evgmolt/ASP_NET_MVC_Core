@@ -6,6 +6,7 @@ namespace SafeListDemo
     class Program
     {
         static int MaxListCount = 30;
+        static Object _lockObject = new object();
         static void Main(string[] args)
         {
             SafeList<int> safeList = new SafeList<int>();
@@ -40,9 +41,19 @@ namespace SafeListDemo
                 {
                     list.Add(id * 10 + i);
                 }
-                list.Show();
+                Show(list);
                 Thread.Sleep(1000);
             }
+        }
+        public static void Show(SafeList<int> list)
+        {
+            var array = list.GetArray();
+            string s = "";
+            foreach (int element in array)
+            {
+                s += element.ToString() + " ";
+            }
+            Console.WriteLine(s);
         }
     }
 }
