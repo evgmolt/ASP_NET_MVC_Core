@@ -10,5 +10,4 @@ namespace ObserverDemo
     {
         void Update(Object ob);
     }
-
 }

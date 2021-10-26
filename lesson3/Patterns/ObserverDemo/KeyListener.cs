@@ -15,6 +15,7 @@ namespace ObserverDemo
         {
             _observers = new List<IObserver>();
         }
+
         public void NotifyObservers()
         {
             foreach (IObserver o in _observers)

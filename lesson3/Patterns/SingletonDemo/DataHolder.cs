@@ -10,8 +10,8 @@ namespace SingletonDemo
     class DataHolder : IDisposable
     {
         private static DataHolder instance;
-        private FileStream _dataFile;
-        private static object _lockObject = new Object();
+        private readonly FileStream _dataFile;
+        private static object _lockObject = new();
         private long _fileSize;
         private const int _outArraySize = 4;
 
@@ -26,7 +26,7 @@ namespace SingletonDemo
         {
             if (instance == null)
             {
-                lock (_lockObject) ;
+                lock (_lockObject)
                 if (instance == null)
                 {
                     instance = new DataHolder(fname);
@@ -37,8 +37,8 @@ namespace SingletonDemo
 
         public byte[] GetData()
         {
-            Random rand = new Random();
-            int position = rand.Next(0, _fileSize - _outArraySize);
+            Random rand = new();
+            int position = rand.Next(0, (int)_fileSize - _outArraySize);
             _dataFile.Seek(position, SeekOrigin.Begin);
             byte[] result = new byte[_outArraySize];
             _dataFile.Read(result, 0, _outArraySize);

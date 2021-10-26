@@ -12,5 +12,4 @@ namespace ObserverDemo
         void RemoveObserver(IObserver o);
         void NotifyObservers();
     }
-
 }
