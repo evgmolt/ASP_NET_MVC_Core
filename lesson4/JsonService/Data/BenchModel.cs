@@ -4,7 +4,8 @@ using System.Text;
 
 namespace JsonService.Data
 {
-    class BenchModel : CommonData
+    //Сборная модель
+    class BenchModel : BaseData
     {
         public ModelType TypeOfModel;
         public int Scale;

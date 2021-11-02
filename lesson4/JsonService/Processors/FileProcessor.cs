@@ -14,7 +14,7 @@ namespace JsonService
 
         public FileProcessor(AbstractFileProcessor fileProcessor) => this.fileProcessor = fileProcessor;
 
-        public CommonData Process(string content)
+        public BaseData Process(string content)
         {
             return fileProcessor.ProcessContent(content);
         }

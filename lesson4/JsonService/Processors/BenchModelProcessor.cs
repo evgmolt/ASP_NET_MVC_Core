@@ -11,7 +11,7 @@ namespace JsonService.Processors
 {
     internal class BenchModelProcessor : AbstractFileProcessor
     {
-        protected override CommonData Process(string content)
+        protected override BaseData Process(string content)
         {
             BenchModel result = JsonConvert.DeserializeObject<BenchModel>(content);
             return result;

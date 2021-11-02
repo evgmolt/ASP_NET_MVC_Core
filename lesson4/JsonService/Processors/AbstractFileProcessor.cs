@@ -11,7 +11,7 @@ namespace JsonService
 {
     abstract class AbstractFileProcessor
     {
-        public CommonData ProcessContent(string content)
+        public BaseData ProcessContent(string content)
         {
             if (content != "")
             {
@@ -23,6 +23,6 @@ namespace JsonService
             }
         }
 
-        protected abstract CommonData Process(string content);
+        protected abstract BaseData Process(string content);
     }
 }

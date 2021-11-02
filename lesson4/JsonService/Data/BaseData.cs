@@ -4,8 +4,9 @@ using System.Text;
 
 namespace JsonService.Data
 {
+    //Базовый тип данных
     [Serializable]
-    public abstract class CommonData
+    public abstract class BaseData
     {
         public int Id { get; set; }
         public string Name { get; set; }

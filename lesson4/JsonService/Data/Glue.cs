@@ -5,9 +5,8 @@ using System.Text;
 
 namespace JsonService.Data
 {
-    public class Glue : CommonData
+    public class Glue : BaseVolumeData
     {
         public GlueType TypeOfGlue { get; set; }
-        public decimal Volume { get; set; }
     }
 }

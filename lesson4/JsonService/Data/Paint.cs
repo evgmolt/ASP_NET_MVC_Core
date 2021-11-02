@@ -5,9 +5,8 @@ using System.Text;
 
 namespace JsonService.Data
 {
-    public class Paint : CommonData
+    public class Paint : BaseVolumeData
     {
         public Color Color { get; set; }
-        public decimal Volume { get; set; }
     }
 }

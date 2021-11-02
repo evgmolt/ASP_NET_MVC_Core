@@ -9,9 +9,10 @@ using System.Text.Json;
 
 namespace JsonService
 {
-    public class FilesCreator
+    internal class FilesCreator
     {
-        BenchModel benchModel1 = new BenchModel
+        //Три сборных модели, клей, краска и смывка
+        BenchModel benchModel1 = new()
         {
             Id = 0,
             Name = "North American P-51B Mustang",
@@ -20,7 +21,7 @@ namespace JsonService
             TypeOfModel = ModelType.Aircraft,
             Scale = 32,
         };
-        BenchModel benchModel2 = new BenchModel
+        BenchModel benchModel2 = new()
         {
             Id = 1,
             Name = "Leichttractor rheinmetall 1930",
@@ -29,7 +30,7 @@ namespace JsonService
             TypeOfModel = ModelType.Armor,
             Scale = 35,
         };
-        BenchModel benchModel3 = new BenchModel
+        BenchModel benchModel3 = new()
         {
             Id = 2,
             Name = "Alpha Romeo Gulietta Spider",
@@ -39,7 +40,7 @@ namespace JsonService
             Scale = 24,
         };
 
-        Glue glue1 = new Glue
+        Glue glue1 = new()
         {
             Id = 3,
             Name = "Cianoakril",
@@ -49,7 +50,7 @@ namespace JsonService
             Volume = 3
         };
 
-        Paint paint1 = new Paint
+        Paint paint1 = new()
         {
             Id = 4,
             Name = "Chrome Yellow",
@@ -59,16 +60,16 @@ namespace JsonService
             Volume = 10
         };
 
-        Effect effect1 = new Effect
+        Effect effect1 = new()
         {
             Id = 5,
             Name = "Ammo",
             Manufacturer = "Mig",
             Price = 386,
+            Volume = 25,
             TypeOfEffect = Enums.EffectType.Wash
         };
 
-        Dictionary<int, CommonData> dic;
         public FilesCreator(string dataDirectory)
         {
             JsonWriter.Write(benchModel1, dataDirectory);

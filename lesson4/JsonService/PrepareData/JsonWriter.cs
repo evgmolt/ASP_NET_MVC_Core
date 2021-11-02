@@ -8,12 +8,11 @@ using System.Text.Json;
 
 namespace JsonService
 {
-    public static class JsonWriter
+    internal class JsonWriter
     {
-        public static void Write(CommonData item, string directory)
+        public static void Write(BaseData item, string directory)
         {
             string fileExtension = ".json";
-            Type tttt = item.GetType();
             string json = JsonConvert.SerializeObject(item);
             File.WriteAllText(directory + @"\" + item.Id.ToString() + fileExtension, json);
         }

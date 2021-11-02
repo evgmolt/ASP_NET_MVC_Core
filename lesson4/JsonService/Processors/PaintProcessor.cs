@@ -10,7 +10,7 @@ namespace JsonService.Processors
 {
     internal class PaintProcessor : AbstractFileProcessor
     {
-        protected override CommonData Process(string content)
+        protected override BaseData Process(string content)
         {
             Paint result = JsonConvert.DeserializeObject<Paint>(content);
             return result;

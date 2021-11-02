@@ -6,15 +6,12 @@ namespace JsonService
 {
     internal class EffectProcessor : AbstractFileProcessor
     {
-        protected override CommonData Process(string fileName)
+        protected override BaseData Process(string fileName)
         {
-            XmlSerializer formatter = new XmlSerializer(typeof(Effect));
-            using (FileStream fs = new FileStream(fileName, FileMode.OpenOrCreate))
-            {
-                Effect result = (Effect)formatter.Deserialize(fs);
-                return result;
-            }
-
+            XmlSerializer formatter = new(typeof(Effect));
+            using FileStream fs = new(fileName, FileMode.OpenOrCreate);
+            Effect result = (Effect)formatter.Deserialize(fs);
+            return result;
         }
     }
 }

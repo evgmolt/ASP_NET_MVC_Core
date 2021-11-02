@@ -10,7 +10,7 @@ namespace JsonService.Processors
 {
     internal class GlueProcessor : AbstractFileProcessor
     {
-        protected override CommonData Process(string content)
+        protected override BaseData Process(string content)
         {
             Glue result = JsonConvert.DeserializeObject<Glue>(content);
             return result;
