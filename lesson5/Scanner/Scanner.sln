@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31727.386
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Scanner", "Scanner.csproj", "{008568C3-0F7E-4233-8BD3-EE59571E7925}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScannerLib", "..\ScannerLib\ScannerLib.csproj", "{1BBED07E-16F0-4E86-81DE-8370FA867FB3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Emulator", "..\Emulator\Emulator.csproj", "{5FE68EDE-29BD-4D9E-A70C-29BCA1C58060}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{008568C3-0F7E-4233-8BD3-EE59571E7925}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{008568C3-0F7E-4233-8BD3-EE59571E7925}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{008568C3-0F7E-4233-8BD3-EE59571E7925}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{008568C3-0F7E-4233-8BD3-EE59571E7925}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1BBED07E-16F0-4E86-81DE-8370FA867FB3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1BBED07E-16F0-4E86-81DE-8370FA867FB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1BBED07E-16F0-4E86-81DE-8370FA867FB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1BBED07E-16F0-4E86-81DE-8370FA867FB3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5FE68EDE-29BD-4D9E-A70C-29BCA1C58060}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5FE68EDE-29BD-4D9E-A70C-29BCA1C58060}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5FE68EDE-29BD-4D9E-A70C-29BCA1C58060}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5FE68EDE-29BD-4D9E-A70C-29BCA1C58060}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E7CCBF45-781A-4F3E-B493-DF8E18C72577}
+	EndGlobalSection
+EndGlobal
