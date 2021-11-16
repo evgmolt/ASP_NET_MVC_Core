@@ -15,10 +15,13 @@ namespace ScannerLib
         private const string _logFile = "scanner.log";
         private readonly IDevice _device;
         private ISaver _saver;
+        private string _fileName;
 
-        public Driver(IDevice device)
+        public Driver(IDevice device, ISaver saver, string fileName)
         {
             _device = device;
+            _saver = saver;
+            _fileName = fileName;
         }
 
         public void SetupSaveType(ISaver saver)
@@ -35,17 +38,17 @@ namespace ScannerLib
             return result;
         }
 
-        public void Save(string fileName)
+        public void Save()
         {
             if (_saver != null)
             {
-                if (_saver.Save(_device, fileName))
+                if (_saver.Save(_device, _fileName))
                 {
-                    Log("Saved to file " + fileName);
+                    Log("Saved to file " + _fileName);
                 }
                 else
                 {
-                    Log("Error writing to file " + fileName);
+                    Log("Error writing to file " + _fileName);
                 }
             }
         }

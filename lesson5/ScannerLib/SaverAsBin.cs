@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace ScannerLib
 {
-    public sealed class SaverAsBin : ISaver
+    public sealed class SaverAsBin : Saver
     {
-        public bool Save(IDevice device, string fileName)
+        public override bool Save(IDevice device, string fileName)
         {
             byte[] data = device.GetData();
             try
