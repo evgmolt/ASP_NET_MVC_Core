@@ -11,7 +11,7 @@ using WebApplicationMVC.Models;
 namespace WebApplicationMVC.Controllers
 {
     public class VinylRecordsController : Controller
-    {
+    { 
         private readonly WebApplicationMVCContext _context;
 
         public VinylRecordsController(WebApplicationMVCContext context)
@@ -20,9 +20,16 @@ namespace WebApplicationMVC.Controllers
         }
 
         // GET: VinylRecords
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchString)
         {
-            return View(await _context.VinylRecord.ToListAsync());
+            var records = from r in _context.VinylRecord select r;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                records = records.Where(s => s.Artist.Contains(searchString));
+            }
+
+            return View(await records.ToListAsync());
         }
 
         // GET: VinylRecords/Details/5
