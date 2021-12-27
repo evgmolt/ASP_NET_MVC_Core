@@ -9,15 +9,16 @@ namespace MessageService.Controllers
     {
         private readonly IGate _gate;
         private readonly MessageServiceContext _context;
+
         public SendMessageController(IGate gate, MessageServiceContext context)
         {
             _gate = gate;
             _context = context;
         }
-        public async void Index()
+        public async void Index(string message, string subject)
         {
             var users = _context.User.ToList();
-            await _gate.SendMessage("", "", users);
+            await _gate.SendMessage(message, subject, users);
         }
     }
 }

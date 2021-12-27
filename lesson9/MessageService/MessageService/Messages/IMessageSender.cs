@@ -4,6 +4,6 @@ namespace MessageService.Messages
 {
     public interface IMessageSender
     {
-        Task SendAsync(string message, string subject, User user);
+        Task SendAsync(IConfiguration config, string message, string subject, List<User> users);
     }
 }

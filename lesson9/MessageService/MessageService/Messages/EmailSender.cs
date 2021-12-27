@@ -1,25 +1,41 @@
 ﻿using MessageService.Models;
+using MimeKit;
+using MailKit.Net.Smtp;
 using System.Net.Mail;
 
 namespace MessageService.Messages
 {
-    public class EMailSender : IMessageSender
+    public class EmailSender : IMessageSender
     {
-		public Task SendAsync(string message, string subject, User user)
-		{
-			
-			var from = "evg.molt@gmail.com";
-			var pass = "furiakrucha467";
-			SmtpClient client = new SmtpClient("smtp.gmail.com", 587);
-			client.DeliveryMethod = SmtpDeliveryMethod.Network;
-			client.UseDefaultCredentials = false;
-			client.Credentials = new System.Net.NetworkCredential(from, pass);
-			client.EnableSsl = true;
-			var mail = new MailMessage(from, user.EMail);
-			mail.Subject = subject;
-			mail.Body = message;
-			mail.IsBodyHtml = true;
-			return client.SendMailAsync(mail);
-		}
-	}
+        public async Task SendAsync(IConfiguration config, string message, string subject, List<User> users)
+        {
+            string myEmail = config.GetValue<string>("Email");
+            Console.WriteLine(myEmail);
+            var emailMessage = new MimeMessage();
+
+            emailMessage.From.Add(new MailboxAddress(config.GetValue<string>("Name"), myEmail));
+
+            foreach (User user in users)
+            {
+                emailMessage.To.Add(new MailboxAddress("", user.EMail));
+            }
+            emailMessage.Subject = subject;
+            emailMessage.Body = new TextPart(MimeKit.Text.TextFormat.Html)
+            {
+                Text = message
+            };
+
+            using (var client = new MailKit.Net.Smtp.SmtpClient())
+            {
+                await client.ConnectAsync(config.GetValue<string>("Smtp"), 
+                                          Int32.Parse(config.GetValue<string>("Port")),
+                                          false);
+                await client.AuthenticateAsync(myEmail, config.GetValue<string>("Password"));
+                await client.SendAsync(emailMessage);
+                await client.DisconnectAsync(true);
+            }
+        }
+    }
+
 }
+

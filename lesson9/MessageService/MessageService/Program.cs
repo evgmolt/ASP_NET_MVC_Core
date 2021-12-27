@@ -14,12 +14,12 @@ builder.Services.AddDbContext<MessageServiceContext>(options =>
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.AddScoped<IGate, Gate>();
+builder.Services.AddSingleton<IGate, Gate>();
 builder.Services.AddSingleton<IJobFactory, SingletonJobFactory>();
 builder.Services.AddSingleton<ISchedulerFactory, StdSchedulerFactory>();
-builder.Services.AddSingleton<SendJob>();
 
 string cronstring = builder.Configuration.GetValue<string>("CronString");
+builder.Services.AddSingleton<SendJob>();
 builder.Services.AddSingleton(new JobSchedule(jobType: typeof(SendJob), cronExpression: cronstring));
 builder.Services.AddSingleton<QuartzHostedService>();
 builder.Services.AddHostedService<QuartzHostedService>(provider => provider.GetService<QuartzHostedService>());
