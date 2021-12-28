@@ -15,6 +15,13 @@ namespace MessageService.Controllers
             _gate = gate;
             _context = context;
         }
+        /// <summary>
+        /// Отправляет сообщение зарегистрированным пользователям.
+        /// </summary>
+        /// <param name="message"></param>
+        /// <param name="subject"></param>
+
+        [HttpPut("SendMessage/{message}/{subject}")]
         public async void Index(string message, string subject)
         {
             var users = _context.User.ToList();

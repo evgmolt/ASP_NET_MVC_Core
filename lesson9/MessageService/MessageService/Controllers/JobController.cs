@@ -11,10 +11,19 @@ namespace MessageService.Controllers
         {
             _service = service;
         }
+        /// <summary>
+        /// Запускает отправку сообщений по расписанию. 
+        /// </summary>
+        [HttpGet("Job/StartJob")]
         public async void StartJob()
         {
             await _service.StartAsync(new CancellationToken());
         }
+
+        /// <summary>
+        /// Останавливает отправку сообщений по расписанию. 
+        /// </summary>
+        [HttpGet("Job/StopJob")]
         public async void StopJob()
         {
             await _service.StopAsync(new CancellationToken());
